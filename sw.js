@@ -113,25 +113,26 @@ const staticAssets = [
     cacheVersion++;
     cacheName = `cache-v${cacheVersion}`;
   }
-  importScripts('https://cdn.jsdelivr.net/npm/idb@4.0.3/build/iife/index-min.js');
+importScripts('https://cdn.jsdelivr.net/npm/idb@4.0.3/build/iife/index-min.js');
 
 let db;
+const cacheName = 'staticAssets';
 
 const initializeDatabase = async () => {
   db = await idb.openDB('yourDatabaseName', 1, {
     upgrade(db) {
-      db.createObjectStore('staticAssets');
+      db.createObjectStore(cacheName);
     },
   });
 };
 
 const addToCache = async (url, response) => {
-  await db.put('staticAssets', response.clone(), url);
+  await db.put(cacheName, response.clone(), url);
   return response;
 };
 
 const getFromCache = async (request) => {
-  const cachedResponse = await db.get('staticAssets', request.url);
+  const cachedResponse = await db.get(cacheName, request.url);
   if (cachedResponse) {
     return cachedResponse;
   }
