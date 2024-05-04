@@ -6,7 +6,7 @@ const staticAssets = [
     "/offline.html",
     "audio/article 1",
     "audio/article 2",
-    "audio/article 3"
+    "audio/article 3",
 "audio/article 4",
 "audio/article 5",
 "audio/article 6",
