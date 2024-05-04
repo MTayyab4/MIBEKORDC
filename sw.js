@@ -119,11 +119,16 @@ let db;
 const cacheName = 'staticAssets';
 
 const initializeDatabase = async () => {
-  db = await idb.openDB('yourDatabaseName', 1, {
-    upgrade(db) {
-      db.createObjectStore(cacheName);
-    },
-  });
+  try {
+    db = await idb.openDB('staticAssetsDB', 1, {
+      upgrade(db) {
+        db.createObjectStore(cacheName);
+      },
+    });
+    console.log('IndexedDB initialized successfully');
+  } catch (error) {
+    console.error('Error initializing IndexedDB:', error);
+  }
 };
 
 const addToCache = async (url, response) => {
@@ -132,12 +137,16 @@ const addToCache = async (url, response) => {
 };
 
 const getFromCache = async (request) => {
-  const cachedResponse = await db.get(cacheName, request.url);
-  if (cachedResponse) {
-    return cachedResponse;
+  try {
+    const cachedResponse = await db.get(cacheName, request.url);
+    if (cachedResponse) {
+      return cachedResponse;
+    }
+    return fetch(request);
+  } catch (error) {
+    console.error('Error getting from cache:', error);
+    return fetch(request);
   }
-
-  return fetch(request);
 };
 
 self.addEventListener('install', (event) => {
