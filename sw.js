@@ -6,7 +6,7 @@ const staticAssets = [
     "/offline.html",
     "audio/article 1",
     "audio/article 2",
-    "audio/article 3",
+     "audio/article 3",
 "audio/article 4",
 "audio/article 5",
 "audio/article 6",
@@ -53,17 +53,15 @@ const staticAssets = [
 "audio/article 47",
 "audio/article 48",
 "audio/article 49",
-"audio/article 50",
-
-
+"audio/article 50",   
     "photos/Flag-of-Congo-01.svg",
-    "photos/images.png",
+    "photos/images.png"
   ];
   let cacheVersion = 0;
-  let cacheName = cache-v${cacheVersion};
+  let cacheName = `cache-v${cacheVersion}`;
   function increment() {
     cacheVersion++;
-    cacheName = cache-v${cacheVersion};
+    cacheName = `cache-v${cacheVersion}`;
   }
   
   //Add cache while installing Sw
