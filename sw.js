@@ -4,7 +4,7 @@ const staticAssets = [
     "/index.html",
     "/404.html",
     "/offline.html",
-    "audio/article 1.mp3",
+    "audio/article_1.mp3",
     "audio/article 2.mp3",
      "audio/article 3.mp3",
 "audio/article 4.mp3",
