@@ -57,7 +57,7 @@ function getAudio(key, callback) {
 
 // Fetch the audio file
 var xhr = new XMLHttpRequest();
-xhr.open('GET', 'example_audio.mp3', true);
+xhr.open('GET', 'audio/article_1.mp3', true);
 xhr.responseType = 'blob';
 
 xhr.onload = function(event) {
